@@ -27,6 +27,7 @@ public class StudentService {
                         isNameValid(r),
                         "the first letter must be uppercase")
                 )
+                .onErrorContinue((e, i) ->System.out.println(e.getMessage() + ": " + i))
                 .flatMap(this.studentRepository::save);
 
         return transactionalOperator.transactional(reservationFlux);
